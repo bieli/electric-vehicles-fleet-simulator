@@ -3,8 +3,8 @@
 Web based electric vehicles fleet simulator (UI prototype for EV chargers experiments)
 
 ### Features - you can (in pre-alpha version)
-- drive mini EV car emulator actor (use arrows)
-- switch beetwen cars in fleet
+- drive mini EV car emulator actor (use arrows keys on keyboard)
+- switch beetwen cars in fleet (+ / - keys on keyboard)
 - EV car discharging when is used
 - EV charger react with car
 
