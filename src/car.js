@@ -174,11 +174,13 @@ class Car{
             ctx.beginPath();
             let cr1 = 25 - Math.floor(((this.acuPower / 100)*25));
             ctx.font = "12px serif";
-            
+
             // animation fulfilling car battery
-            // if (this.acuPower < 100) {
-            //    this.acuPower = this.acuPower + 1
-            //}
+            if (this.is_charging) {
+                if (this.acuPower < 100) {
+                this.acuPower = this.acuPower + 1
+                }
+            }
 
             ctx.fillText(Math.floor(this.acuPower < 100 ? this.acuPower + 1 : this.acuPower).toString() + " %", 
                 c + this.width/2 - 28,

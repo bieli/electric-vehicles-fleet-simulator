@@ -76,11 +76,12 @@ const stations = [
 function animate(){
     canvas.height=window.innerHeight;
 
+    let last_selected = 0;
+    
+
     stations.forEach(station => {
         station.draw(ctx);
     });
-
-    let last_selected = 0;
     for (let i = 0; i < cars.length; i++) {
         cars[i].update(i);
         cars[i].draw(ctx, true);
@@ -95,7 +96,10 @@ function animate(){
             } else {
                 cars[c].discharge();
             }
+            //stations[s].draw(ctx);
         }
+        //cars[c].draw(ctx, true);
+        //cars[c].update(i);
     }
 
 
