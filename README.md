@@ -8,6 +8,13 @@ Web based electric vehicles fleet simulator (UI prototype for EV chargers experi
 - EV car discharging when is used
 - EV charger react with car
 
+#### How to run
+
+```bash
+$ cd src
+$ google-chrome index.html
+```
+
 #### Screenshot - pre-alpha version
 
 ![Preview screenshot1](assets/preview-screenshot1.png)
