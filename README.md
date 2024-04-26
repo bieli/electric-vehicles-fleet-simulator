@@ -11,7 +11,8 @@ Web based electric vehicles fleet simulator (UI prototype for EV chargers experi
 #### How to run
 
 ```bash
-$ cd src
+$ git clone https://github.com/bieli/electric-vehicles-fleet-simulator.git
+$ cd electric-vehicles-fleet-simulator/src
 $ google-chrome index.html
 ```
 
