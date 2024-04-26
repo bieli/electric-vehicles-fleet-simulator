@@ -1,6 +1,10 @@
 # Electric Vehicles Fleet Simulator
 
-Web based electric vehicles fleet simulator (UI prototype for EV chargers experiments)
+Web based electric vehicles fleet simulator (UI prototype for EV chargers experiments).
+
+This project motivation is discovering new `automotive` domain.
+
+This subject is strongly connected to my passion: `Industrial Internet of Things`.
 
 ### Features - you can (in pre-alpha version)
 - drive mini EV car emulator actor (use arrows keys on keyboard)
