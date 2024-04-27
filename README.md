@@ -16,6 +16,7 @@ This subject is strongly connected to my passion: `Industrial Internet of Things
 #### TODO
 - [x] use pure JavaScript to delivery simulator basic UI for web browser GUI
 - [x] push pre-alpha version on github
+- [x] add code formatter for JavaScript
 - [ ] fix problem with car charging only on 3rd station
 - [ ] add WebSockets client and server
 - [ ] add WebSockets impl. for sending statuses about EV cars activity as real-time data streams
