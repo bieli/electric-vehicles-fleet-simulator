@@ -1,7 +1,12 @@
-const canvas=document.getElementById("myCanvas");
-canvas.width=1000;
+const canvas = document.getElementById("myCanvas");
+canvas.width = 1000;
 
 const ctx = canvas.getContext("2d");
+
+let w = window.innerWidth;
+let h = window.innerHeight;
+
+console.log(w, h);
 
 /*    
 var img = new Image();
@@ -46,87 +51,85 @@ window.onbeforeunload = () => {
 };
 */
 function isCollide(a, b) {
-    return !(
-        ((a.y + a.height) < (b.y)) ||
-        (a.y > (b.y + b.height)) ||
-        ((a.x + a.width) < b.x) ||
-        (a.x > (b.x + b.width))
-    );
+  return !(
+    a.y + a.height < b.y ||
+    a.y > b.y + b.height ||
+    a.x + a.width < b.x ||
+    a.x > b.x + b.width
+  );
 }
 
 const maxCars = 4;
 const controls = new Controls(maxCars);
 
+const ww = h - 150;
+const hh = h - 100;
+
 const cars = [
-    new Car(300,1010,30,50, 100, controls),
-    new Car(400,1010,30,50, 75, controls),
-    new Car(500,1010,30,50, 50, controls),
-    new Car(600,1010,30,50, 25, controls),
-    new Car(700,1010,30,50, 0, controls),
+  new Car(300, hh, 30, 50, 100, controls),
+  new Car(400, hh, 30, 50, 75, controls),
+  new Car(500, hh, 30, 50, 50, controls),
+  new Car(600, hh, 30, 50, 25, controls),
+  new Car(700, hh, 30, 50, 0, controls),
 ];
 
-
 const stations = [
-    new Station(100,300,100,100),
-    new Station(canvas.width/2,700,100,100),
-    new Station(canvas.width - 100, 1100,100,100)
+  new Station(100, ww / 4, 100, 100),
+  new Station(canvas.width / 2, ww / 2, 100, 100),
+  new Station(canvas.width - 100, ww, 100, 100),
 ];
 
 //let animCnt = 0;
-function animate(){
-    canvas.height=window.innerHeight;
+function animate() {
+  canvas.height = window.innerHeight;
 
-    let last_selected = 0;
-    
+  let last_selected = 0;
 
-    stations.forEach(station => {
-        station.draw(ctx);
-    });
-    for (let i = 0; i < cars.length; i++) {
-        cars[i].update(i);
-        cars[i].draw(ctx, true);
+  stations.forEach((station) => {
+    station.draw(ctx);
+  });
+  for (let i = 0; i < cars.length; i++) {
+    cars[i].update(i);
+    cars[i].draw(ctx, true);
+  }
+
+  for (let c = 0; c < cars.length; c++) {
+    for (let s = 0; s < stations.length; s++) {
+      if (isCollide(stations[s], cars[c])) {
+        //console.log('COLLIDE !');
+        stations[s].used(true, c, s);
+        cars[c].charging(stations[s]);
+      } else {
+        cars[c].discharge();
+      }
+      //stations[s].draw(ctx);
     }
+    //cars[c].draw(ctx, true);
+    //cars[c].update(i);
+  }
 
-    for (let c = 0; c < cars.length; c++) {
-        for (let s = 0; s < stations.length; s++) {
-            if (isCollide(stations[s], cars[c])) {
-                //console.log('COLLIDE !');
-                stations[s].used(true, c, s);
-                cars[c].charging(stations[s]);
-            } else {
-                cars[c].discharge();
-            }
-            //stations[s].draw(ctx);
-        }
-        //cars[c].draw(ctx, true);
-        //cars[c].update(i);
-    }
+  ctx.save();
+  ctx.beginPath();
+  ctx.font = "32px serif";
+  ctx.fillStyle = "white";
+  ctx.fillText("..:: Electric vehicles fleet simulator ::..", 270, 30);
+  ctx.font = "22px serif";
+  ctx.fillStyle = "lightgray";
+  ctx.fillText(
+    "Controls: + / - vehicle selection | arrows for selected vehicle traction",
+    210,
+    60,
+  );
 
+  ctx.lineWidth = 2;
+  ctx.setLineDash([0, 0]);
+  ctx.strokeStyle = "lightgray";
+  ctx.beginPath();
+  ctx.moveTo(5, 80);
+  ctx.lineTo(1000, 80);
+  ctx.stroke();
 
-    ctx.save();
-    ctx.beginPath();
-    ctx.font = "32px serif";
-    ctx.fillStyle = "white";
-    ctx.fillText("..:: Electric vehicles fleet simulator ::..", 
-        270,
-        30,
-    );
-    ctx.font = "22px serif";
-    ctx.fillStyle = "lightgray";
-    ctx.fillText("Controls: + / - vehicle selection | arrows for selected vehicle traction", 
-        210,
-        60,
-    );
-
-    ctx.lineWidth=2;
-    ctx.setLineDash([0,0]);
-    ctx.strokeStyle="lightgray";
-    ctx.beginPath();
-    ctx.moveTo(5, 80);
-    ctx.lineTo(1000, 80);
-    ctx.stroke();
-
-/*
+  /*
 const xx = 0;
 const yy = 0;
     
@@ -219,13 +222,13 @@ ctx.lineTo(9.000000, 11.000000);
 ctx.stroke()
 */
 
-    ctx.restore();
+  ctx.restore();
 
-    //if ((animCnt % 1000) == 0) {
-    //    console.log(animCnt);
-    //}
-    //animCnt++;
-    requestAnimationFrame(animate);
+  //if ((animCnt % 1000) == 0) {
+  //    console.log(animCnt);
+  //}
+  //animCnt++;
+  requestAnimationFrame(animate);
 }
 
 animate();
