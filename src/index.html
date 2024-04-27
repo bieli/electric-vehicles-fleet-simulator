@@ -5,9 +5,26 @@
 </head>
 <body>
     <canvas id="myCanvas"></canvas>
+
     <script src="controls.js"></script>
     <script src="car.js"></script>
     <script src="station.js"></script>
     <script src="main.js"></script>
+
+    <!-- <p class="btns_abs_0">Car select</p> -->
+    <button type="button" class="btn_abs_1" onclick="click_plus('+')">+</button>
+    <button type="button" class="btn_abs_2" onclick="click_plus('-')">-</button>
+<script>
+    function click_plus(key_code) {
+        var key_event = new KeyboardEvent("keydown", {
+            key: key_code,
+            bubbles: true,
+            cancelable: true
+        });
+        document.dispatchEvent(key_event);
+        //console.log('Click simulation with key_code: ', key_code);
+    }
+
+</script>
 </body>
 </html>

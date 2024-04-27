@@ -11,3 +11,24 @@ body {
 #myCanvas1 {
     background: #47a2df;
 }
+.btns_abs_0 {
+    margin-left: 0.5em;
+    position: absolute;
+    top: 25em;
+    width: 2em;
+    font-size: 1.5em;
+}
+.btn_abs_1 {
+    margin-left: 0.5em;
+    position: absolute;
+    top: 30em;
+    width: 2em;
+    font-size: 1.5em;
+}
+.btn_abs_2 {
+    margin-left: 0.5em;
+    position: absolute;
+    top: 32em;
+    width: 2em;
+    font-size: 1.5em;
+}

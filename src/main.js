@@ -6,7 +6,7 @@ const ctx = canvas.getContext("2d");
 let w = window.innerWidth;
 let h = window.innerHeight;
 
-console.log(w, h);
+//console.log(w, h);
 
 /*    
 var img = new Image();
@@ -66,11 +66,11 @@ const ww = h - 150;
 const hh = h - 100;
 
 const cars = [
-  new Car(300, hh, 30, 50, 100, controls),
-  new Car(400, hh, 30, 50, 75, controls),
-  new Car(500, hh, 30, 50, 50, controls),
-  new Car(600, hh, 30, 50, 25, controls),
-  new Car(700, hh, 30, 50, 0, controls),
+  new Car(0, 300, hh, 30, 50, 100, controls),
+  new Car(1, 400, hh, 30, 50, 75, controls),
+  new Car(2, 500, hh, 30, 50, 50, controls),
+  new Car(3, 600, hh, 30, 50, 25, controls),
+  new Car(4, 700, hh, 30, 50, 0, controls),
 ];
 
 const stations = [

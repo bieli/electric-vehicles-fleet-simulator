@@ -1,5 +1,6 @@
 class Car {
-  constructor(x, y, width, height, startPower, controls) {
+  constructor(id, x, y, width, height, startPower, controls) {
+    this.id = id;
     this.x = x;
     this.y = y;
     this.width = width;
@@ -147,6 +148,11 @@ class Car {
         ).toString() + " %",
         c + this.width / 2 - 28,
         d + this.height / 2 + 20,
+      );
+      ctx.fillText(
+        "c [" + this.id.toString() + " ]",
+        c + this.width / 2 - 28,
+        d + this.height / 2 + 40,
       );
       ctx.rect(
         c + -10 + 2,
