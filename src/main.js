@@ -59,23 +59,21 @@ function isCollide(a, b) {
   );
 }
 
-const maxCars = 4;
-const controls = new Controls(maxCars);
-
 const ww = h - 150;
-const hh = h - 100;
 
-const cars = [
-  new Car(0, 300, hh, 30, 50, 100, controls),
-  new Car(1, 400, hh, 30, 50, 75, controls),
-  new Car(2, 500, hh, 30, 50, 50, controls),
-  new Car(3, 600, hh, 30, 50, 25, controls),
-  new Car(4, 700, hh, 30, 50, 0, controls),
-];
+const carsRows = 1;
+const carsCols = 5;
+
+const hh = h - carsRows * 110;
+
+const fleet = new Fleet(0, 300, hh, 110, carsRows, carsCols, true);
+const controls = fleet.controls;
+const cars = [...fleet.create()][0];
+console.log("cars:", cars);
 
 const stations = [
   new Station(100, ww / 4, 100, 100),
-  new Station(canvas.width / 2, ww / 2, 100, 100),
+  new Station(canvas.width / 2, ww / 2 + 100, 100, 100),
   new Station(canvas.width - 100, ww, 100, 100),
 ];
 
@@ -113,6 +111,14 @@ function animate() {
   ctx.font = "32px serif";
   ctx.fillStyle = "white";
   ctx.fillText("..:: Electric vehicles fleet simulator ::..", 270, 30);
+
+  ctx.font = "22px serif";
+  ctx.fillText(
+    "https://github.com/bieli/electric-vehicles-fleet-simulator",
+    250,
+    83,
+  );
+
   ctx.font = "22px serif";
   ctx.fillStyle = "lightgray";
   ctx.fillText(
@@ -125,8 +131,16 @@ function animate() {
   ctx.setLineDash([0, 0]);
   ctx.strokeStyle = "lightgray";
   ctx.beginPath();
-  ctx.moveTo(5, 80);
-  ctx.lineTo(1000, 80);
+  ctx.moveTo(5, 95);
+  ctx.lineTo(1000, 95);
+  ctx.stroke();
+
+  ctx.lineWidth = 2;
+  ctx.setLineDash([0, 0]);
+  ctx.strokeStyle = "lightgray";
+  ctx.beginPath();
+  ctx.moveTo(5, 40);
+  ctx.lineTo(1000, 40);
   ctx.stroke();
 
   /*

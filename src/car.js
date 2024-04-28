@@ -1,4 +1,6 @@
 class Car {
+  #controls;
+
   constructor(id, x, y, width, height, startPower, controls) {
     this.id = id;
     this.x = x;
@@ -25,6 +27,7 @@ class Car {
 
   #move(idx) {
     this.selected = this.controls.select == idx;
+    //this.selected = this.controls.selected() == idx;
     if (this.selected && this.acuPower > 0) {
       if (this.controls.forward) {
         this.speed += this.acceleration;
@@ -179,7 +182,16 @@ class Car {
       ctx.lineWidth = 4;
       ctx.beginPath();
       ctx.rect(-this.width / 2, -this.height / 2, this.width, this.height);
-      ctx.strokeStyle = "white";
+      ctx.strokeStyle = "yellow";
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.rect(
+        -this.width / 2 - 4,
+        -this.height / 2 - 4,
+        this.width + 8,
+        this.height + 8,
+      );
+      ctx.strokeStyle = "orange";
       ctx.stroke();
     }
 

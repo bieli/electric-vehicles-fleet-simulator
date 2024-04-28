@@ -1,12 +1,10 @@
 class Controls {
-  #select;
-
   constructor(maxCars, mock = false) {
     this.forward = false;
     this.left = false;
     this.right = false;
     this.reverse = false;
-    this.select = 0;
+    this._select = 0;
     this.maxCars = maxCars;
     this.mock = mock;
 
@@ -30,15 +28,15 @@ class Controls {
             this.reverse = true;
             break;
           case "+":
-            if (this.select < this.maxCars) {
-              this.select += 1;
-              //console.log("key: + :: this.select:", this.select);
+            if (this._select < this.maxCars) {
+              this._select += 1;
+              //console.log("key: + :: this._select:", this._select);
             }
             break;
           case "-":
-            if (this.select > 0) {
-              this.select -= 1;
-              //console.log("key: - :: this.select:", this.select);
+            if (this._select > 0) {
+              this._select -= 1;
+              //console.log("key: - :: this._select:", this._select);
             }
             break;
         }
@@ -62,7 +60,11 @@ class Controls {
     }
   }
 
-  get selected() {
-    return this.#select;
+  get select() {
+    return this._select;
+  }
+
+  set select(val) {
+    this._select = val;
   }
 }
