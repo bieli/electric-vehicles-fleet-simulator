@@ -14,7 +14,6 @@ This subject is strongly connected to my passion: `Industrial Internet of Things
 - EV charger react with car
 - EV charging when is on station
 
-
 #### How to run
 
 ```bash
@@ -39,3 +38,10 @@ $ google-chrome index.html
 #### Screenshot - pre-alpha version
 
 ![Preview screenshot1](assets/preview-screenshot2.png)
+
+### Requirements for development
+- node version manager (nvm)
+- node lts version
+- npm
+- make
+
