@@ -16,7 +16,7 @@ class Car {
     this.selected = false;
     this.startPower = startPower;
     this.acuPower = this.startPower;
-    this.is_charging = false;
+    this.isCharging = false;
 
     this.controls = controls;
   }
@@ -121,7 +121,7 @@ class Car {
     ctx.rect(c + 14, d + 10, 2, 10);
     ctx.fill();
 
-    if (anim == true) {
+    if (anim) {
       ctx.setLineDash([1, 1]);
       ctx.beginPath();
       ctx.rect(
@@ -133,13 +133,13 @@ class Car {
       ctx.fillStyle = "rgb(0 200 0 / 100%)";
       ctx.stroke();
     }
-    if (anim == true) {
+    if (anim) {
       ctx.beginPath();
       let cr1 = 25 - Math.floor((this.acuPower / 100) * 25);
       ctx.font = "12px serif";
 
       // animation fulfilling car battery
-      if (this.is_charging) {
+      if (this.isCharging) { //fixme move to controller
         if (this.acuPower < 100) {
           this.acuPower = this.acuPower + 1;
         }
@@ -177,7 +177,7 @@ class Car {
       ctx.stroke();
     }
 
-    if (this.is_charging == true) {
+    if (this.isCharging) {
       ctx.setLineDash([0, 0]);
       ctx.lineWidth = 4;
       ctx.beginPath();
@@ -198,11 +198,11 @@ class Car {
     ctx.restore();
   }
 
-  charging(station) {
-    this.is_charging = true;
+  charging() {
+    this.isCharging = true;
   }
 
   discharge() {
-    this.is_charging = false;
+    this.isCharging = false;
   }
 }

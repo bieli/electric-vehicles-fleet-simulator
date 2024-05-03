@@ -12,7 +12,7 @@ class Controls {
   }
 
   #addKeyboardListeners() {
-    if (this.mock == false) {
+    if (!this.mock) {
       document.onkeydown = (event) => {
         switch (event.key) {
           case "ArrowLeft":
