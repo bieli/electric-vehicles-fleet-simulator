@@ -65,4 +65,26 @@ class Controls {
   get selected() {
     return this.#select;
   }
+
+  moveForward() {
+    this.left = false;
+    this.right = false;
+    this.forward = true;
+  }
+
+  moveRight() {
+    this.left = false;
+    this.right = true;
+  }
+
+  moveLeft() {
+    this.right = false;
+    this.left = true;
+  }
+
+  stop() {
+    this.forward = false;
+    this.right = false;
+    this.left = true;
+  }
 }

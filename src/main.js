@@ -8,7 +8,6 @@ const ratio = window.devicePixelRatio || 1;
 let width = canvas.width;
 let height = canvas.height;
 
-
 canvas.width *= ratio;
 canvas.height *= ratio;
 
@@ -37,7 +36,6 @@ const hh = height - carsRows * 110;
 const fleet = new Fleet(0, 300, hh, 110, carsRows, carsCols, true);
 const controls = fleet.controls;
 const cars = [...fleet.create()][0];
-console.log("cars:", cars);
 
 const stations = [
     new Station(100, ww / 4, 100, 100),
@@ -45,7 +43,7 @@ const stations = [
     new Station(canvas.width - 100, ww, 100, 100),
 ];
 
-function doCheckCollide(car) {
+function doCheckCollide(car, stations) {
     for (let s = 0; s < stations.length; s++) {
         if (isCollide(stations[s], car)) {
             stations[s].used(true, car.id, s);
@@ -57,22 +55,7 @@ function doCheckCollide(car) {
     car.discharge();
 }
 
-//let animCnt = 0;
-function animate() {
-    ctx.clearRect(0, 0, width, height);
-    stations.forEach((station) => {
-        station.draw(ctx);
-    });
-    for (let i = 0; i < cars.length; i++) {
-        cars[i].update(i);
-        cars[i].draw(ctx, true);
-    }
-
-    for (let c = 0; c < cars.length; c++) { //fixme move to controller
-        let car = cars[c];
-        doCheckCollide(car);
-    }
-
+function showHeader(ctx) {
     ctx.save();
     ctx.beginPath();
     ctx.font = "32px serif";
@@ -111,6 +94,46 @@ function animate() {
     ctx.stroke();
 
     ctx.restore();
+}
+
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+}
+
+function moveRandom(controls) {
+    const enableSimulation = canvas.getAttribute("enableSimulation");
+    if (enableSimulation == "1") {
+        const moveDir = getRandomInt(113);
+        if (moveDir == 0) {
+            controls.moveForward();
+        } else if (moveDir == 1) {
+            controls.moveRight();
+        } else if (moveDir == 2) {
+            controls.moveLeft();
+        }
+    } else {
+        //controls.stop();
+    }
+}
+
+function animate() {
+    ctx.clearRect(0, 0, width, height);
+    stations.forEach((station) => {
+        station.draw(ctx);
+    });
+    for (let i = 0; i < cars.length; i++) {
+        moveRandom(controls);
+        //controls.moveForward();
+        cars[i].update(i);
+        cars[i].draw(ctx, true);
+    }
+
+    for (let c = 0; c < cars.length; c++) { //fixme move to controller
+        let car = cars[c];
+        doCheckCollide(car, stations);
+    }
+
+    showHeader(ctx);
 
     requestAnimationFrame(animate);
 }

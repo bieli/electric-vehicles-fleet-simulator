@@ -32,3 +32,10 @@ body {
     width: 2em;
     font-size: 1.5em;
 }
+.btn_abs_3 {
+    margin-left: 0.5em;
+    position: absolute;
+    top: 34em;
+    width: 2em;
+    font-size: 1.5em;
+}

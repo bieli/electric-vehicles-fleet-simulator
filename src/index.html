@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <canvas id="myCanvas"></canvas>
+    <canvas id="myCanvas" enableSimulation="0"></canvas>
 
     <script src="controls.js"></script>
     <script src="car.js"></script>
@@ -13,19 +13,27 @@
     <script src="main.js"></script>
 
     <!-- <p class="btns_abs_0">Car select</p> -->
-    <button type="button" class="btn_abs_1" onclick="click_plus('+')">+</button>
-    <button type="button" class="btn_abs_2" onclick="click_plus('-')">-</button>
-<script>
-    function click_plus(key_code) {
-        var key_event = new KeyboardEvent("keydown", {
-            key: key_code,
-            bubbles: true,
-            cancelable: true
-        });
-        document.dispatchEvent(key_event);
-        //console.log('Click simulation with key_code: ', key_code);
-    }
+    <button type="button" class="btn_abs_1" onclick="press_key('+')">+</button>
+    <button type="button" class="btn_abs_2" onclick="press_key('-')">-</button>
+    <button type="button" class="btn_abs_3" onclick="enable_simulation()">S</button>
 
-</script>
+    <script>
+        function press_key(key_code) {
+            var key_event = new KeyboardEvent("keydown", {
+                key: key_code,
+                bubbles: true,
+                cancelable: true
+            });
+            document.dispatchEvent(key_event);
+            //console.log('Click simulation with key_code: ', key_code);
+        }
+        function enable_simulation() {
+            const obj = document.querySelector("#myCanvas");
+            if (obj.hasAttribute("enableSimulation")) {
+                var attr = obj.getAttribute("enableSimulation");
+                obj.setAttribute("enableSimulation", attr == "0" ? "1" : "0");
+            }
+        }
+    </script>
 </body>
 </html>
